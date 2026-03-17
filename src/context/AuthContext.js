@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   // Set axios default base URL
-  axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'https://skyweb-strings-b.onrender.com';
+  axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'https://skyweb-strings-b.vercel.app';
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');

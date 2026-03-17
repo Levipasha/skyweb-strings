@@ -18,7 +18,7 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-      const newSocket = io(process.env.REACT_APP_API_URL || 'http://localhost:5000');
+      const newSocket = io(process.env.REACT_APP_API_URL || 'https://skyweb-strings-b.vercel.app');
       
       newSocket.on('connect', () => {
         console.log('Socket connected:', newSocket.id);
