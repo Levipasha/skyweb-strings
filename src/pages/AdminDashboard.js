@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
@@ -18,24 +18,7 @@ const AdminDashboard = () => {
   const [selectedDepartment, setSelectedDepartment] = useState('all');
   const [departments, setDepartments] = useState(['all']);
 
-  useEffect(() => {
-    fetchDashboardData();
-  }, [selectedDate]);
-
-  useEffect(() => {
-    if (socket) {
-      socket.on('workLogUpdate', (updatedLog) => {
-        fetchDashboardData();
-        toast.success('Work log updated in real-time!');
-      });
-
-      return () => {
-        socket.off('workLogUpdate');
-      };
-    }
-  }, [socket]);
-
-  const fetchDashboardData = async () => {
+  const fetchDashboardData = useCallback(async () => {
     try {
       setLoading(true);
       const { data } = await axios.get('/api/worklogs/dashboard', {
@@ -54,7 +37,24 @@ const AdminDashboard = () => {
       toast.error('Failed to fetch dashboard data');
       setLoading(false);
     }
-  };
+  }, [selectedDate]);
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, [fetchDashboardData]);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on('workLogUpdate', (updatedLog) => {
+        fetchDashboardData();
+        toast.success('Work log updated in real-time!');
+      });
+
+      return () => {
+        socket.off('workLogUpdate');
+      };
+    }
+  }, [socket, fetchDashboardData]);
 
   const filteredData = selectedDepartment === 'all'
     ? dashboardData

@@ -60,7 +60,7 @@ const AdminRegister = () => {
       setLoading(true);
       
       // Register admin and create organization in one call
-      const { data } = await axios.post('/api/auth/admin-register', {
+      await axios.post('/api/auth/admin-register', {
         adminName,
         adminEmail,
         adminPassword,

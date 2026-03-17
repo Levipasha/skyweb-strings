@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 import axios from 'axios';
@@ -17,11 +17,7 @@ const EmployeeDashboard = () => {
   const [selectedHour, setSelectedHour] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    fetchWorkLogs();
-  }, [selectedDate]);
-
-  const fetchWorkLogs = async () => {
+  const fetchWorkLogs = useCallback(async () => {
     try {
       setLoading(true);
       const { data } = await axios.get('/api/worklogs', {
@@ -49,7 +45,11 @@ const EmployeeDashboard = () => {
       toast.error('Failed to fetch work logs');
       setLoading(false);
     }
-  };
+  }, [selectedDate, user]);
+
+  useEffect(() => {
+    fetchWorkLogs();
+  }, [fetchWorkLogs]);
 
   const handleKnotClick = (hourData) => {
     setSelectedHour(hourData);

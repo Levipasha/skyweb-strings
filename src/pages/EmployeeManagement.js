@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import toast from 'react-hot-toast';
 import axios from 'axios';
@@ -33,11 +33,7 @@ const EmployeeManagement = () => {
     { name: 'Teal', value: '#14B8A6' }
   ];
 
-  useEffect(() => {
-    fetchEmployees();
-  }, []);
-
-  const fetchEmployees = async () => {
+  const fetchEmployees = useCallback(async () => {
     try {
       setLoading(true);
       const { data } = await axios.get('/api/auth/employees', {
@@ -50,7 +46,11 @@ const EmployeeManagement = () => {
       toast.error('Failed to fetch employees');
       setLoading(false);
     }
-  };
+  }, [user.organization._id]);
+
+  useEffect(() => {
+    fetchEmployees();
+  }, [fetchEmployees]);
 
   const handleOpenModal = (employee = null) => {
     if (employee) {
