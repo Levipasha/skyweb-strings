@@ -1,4 +1,5 @@
 import React from 'react';
+import SkywebLogo from './Untitled design.08150be7610ed15be7f2.png';
 
 const Footer = () => {
   return (
@@ -6,7 +7,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 py-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <img src="/logo.png" alt="SkyWeb" className="h-12" />
+            <img src={SkywebLogo} alt="SkyWeb" className="h-12" />
             <div className="text-sm text-gray-600">
               <p className="font-semibold">Strings</p>
               <p className="text-xs text-gray-500">A Product of SkyWeb</p>

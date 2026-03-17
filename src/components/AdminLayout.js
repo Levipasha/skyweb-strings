@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
+import SkywebLogo from './Untitled design.08150be7610ed15be7f2.png';
 
 const AdminLayout = ({ children }) => {
   const { user, logout } = useAuth();
@@ -26,7 +27,7 @@ const AdminLayout = ({ children }) => {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-8">
               <div className="flex items-center space-x-3">
-                <img src="/logo.png" alt="SkyWeb" className="h-14" />
+                <img src={SkywebLogo} alt="SkyWeb" className="h-14" />
                 <div>
                   <h1 className="text-2xl font-bold text-gray-800">Strings Admin</h1>
                   <p className="text-sm text-gray-600">{user?.organization?.name} • <span className="text-xs text-gray-500">by SkyWeb</span></p>

@@ -7,6 +7,7 @@ import { useAuth } from '../context/AuthContext';
 import { useSocket } from '../context/SocketContext';
 import Thread from '../components/Thread';
 import MinimumLoader from '../components/MinimumLoader';
+import SkywebLogo from '../components/Untitled design.08150be7610ed15be7f2.png';
 
 const AdminDashboard = () => {
   const { user, logout } = useAuth();
@@ -72,7 +73,7 @@ const AdminDashboard = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <img src="/logo.png" alt="SkyWeb" className="h-14" />
+              <img src={SkywebLogo} alt="SkyWeb" className="h-14" />
               <div>
                 <h1 className="text-2xl font-bold text-gray-800">Strings Admin</h1>
                 <p className="text-sm text-gray-600">{user?.organization?.name} • <span className="text-xs text-gray-500">by SkyWeb</span></p>

@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import SkywebLogo from '../components/Untitled design.08150be7610ed15be7f2.png';
 
 const AdminRegister = () => {
   const navigate = useNavigate();
@@ -97,7 +98,7 @@ const AdminRegister = () => {
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
         >
-          <img src="/logo.png" alt="SkyWeb" className="h-32 mx-auto mb-2" />
+          <img src={SkywebLogo} alt="SkyWeb" className="h-32 mx-auto mb-2" />
           <p className="text-xs text-gray-500 font-medium">A Product of SkyWeb</p>
         </motion.div>
         <h1 className="text-4xl font-bold text-gray-800 mb-2">Strings Admin Registration</h1>
